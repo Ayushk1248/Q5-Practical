@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EV Campus Commute - Charging Hubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Inline CSS for the Charging Hubs page additions */
+    :root {
+      --bg-dark: #071022; --accent: #00d1ff; --accent-2: #00ffa6;
+      --glass: rgba(255,255,255,0.06); --card: rgba(255,255,255,0.04);
+      --muted: rgba(255,255,255,0.7);
+    }
+
+    /* Main Content & Layout */
+    .charging-page-main {
+        max-width: 800px;
+        margin: 120px auto 60px; /* Space for fixed nav */
+        padding: 0 20px;
+    }
+
+    .charging-page-main h2 {
+        font-size: 38px;
+        color: var(--accent-2); 
+        font-family: 'Poppins';
+        text-align: center;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(0, 255, 166, 0.4);
+    }
+    
+    .charging-page-main > p {
+        text-align: center;
+        color: var(--muted);
+        font-size: 16px;
+        margin-bottom: 40px;
+    }
+
+    /* Home Button Style - Creative UI */
+    .home-link-box {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .home-link-box a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 25px;
+        font-weight: 700;
+        text-decoration: none;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        color: #042232; /* Dark text on bright gradient */
+        box-shadow: 0 4px 15px rgba(0, 209, 255, 0.3);
+        transition: all 0.2s ease;
+    }
+
+    .home-link-box a:hover {
+        transform: translateY(-2px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 255, 166, 0.5);
+    }
+    
+    .home-link-box a svg {
+        fill: #042232;
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Feature List Styling */
+    .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 40px;
+    }
+    
+    .feature-list li {
+        background: var(--card);
+        border-left: 4px solid var(--accent);
+        padding: 15px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #eaffff;
+        font-weight: 500;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .feature-list li:nth-child(2) {
+        border-left-color: var(--accent-2);
+    }
+    
+    .feature-list li:nth-child(3) {
+        border-left-color: var(--accent);
+    }
+
+    /* Map Button Styling */
+    .map-cta-box {
+        text-align: center;
+        margin-top: 30px;
+    }
+    
+    .map-cta-box a {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        background: var(--accent);
+        color: #042232;
+        box-shadow: 0 8px 30px rgba(0, 209, 255, 0.3);
+        transition: transform 0.2s;
+    }
+    
+    .map-cta-box a:hover {
+        transform: translateY(-3px);
+        background: var(--accent-2);
+        box-shadow: 0 10px 35px rgba(0, 255, 166, 0.5);
+    }
+
+
+    /* General Styling from Main Page for Nav/Footer */
+    .nav {
+        position: fixed; top: 0; left: 0; right: 0; height: 72px; display: flex;
+        align-items: center; justify-content: space-between; padding: 0 28px;
+        backdrop-filter: blur(8px);
+        background: linear-gradient(90deg,rgba(7,16,34,0.45),rgba(7,16,34,0.18));
+        z-index: 40; border-bottom: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+        width: 44px; height: 44px; border-radius: 8px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 900; color: #042232; font-family: 'Poppins';
+        box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+    .brand h1 { font-size: 18px; margin: 0; letter-spacing: 0.2px }
+
+    .ev-footer {
+        background: #071022; color: #eaf6ff; padding: 40px 20px;
+        border-top: 1px solid rgba(255,255,255,0.05); font-size: 14px;
+    }
+    .ev-footer-content { max-width: 1100px; margin: auto; display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
+    .ev-footer .footer-section { flex: 1 1 200px; min-width: 180px; }
+    .ev-footer h4 { margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 700; color: var(--accent); }
+    .ev-footer a { color: #eaf6ff; text-decoration: none; transition: color 0.2s; }
+    .ev-footer a:hover { color: var(--accent-2); }
+    .ev-footer ul { list-style: none; padding: 0; margin: 0; }
+    .ev-footer ul li { margin-bottom: 8px; }
+    .ev-footer .copyright { margin-top: 20px; font-size: 12px; color: rgba(234,246,255,0.6); }
+    
+    /* Navigation Button Style */
+    .btn { background: var(--glass); color: var(--muted); padding: 8px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.04); cursor: pointer; font-weight: 600; transition: all .18s }
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#042232;border:none;padding:10px 18px;}
+    .nav .actions{display:flex;gap:12px;align-items:center}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand">
+        <div class="logo"><img src="CampEV.jpeg" alt="CampEV Logo" id="navbar-logo"></div>
+        <div>
+            <h1>CampEV</h1>
+            <div style="font-size:12px;color:rgba(234,246,255,0.6)">Clean • Quiet • Smart</div>
+        </div>
+    </div>
+    <div class="actions">
+      <a href="EV Campus Commute.html" class="home-link-box-nav">
+          <button class="btn primary" id="btnHomeNav">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h3v2h-5V7z"/></svg>
+              Go to Home
+          </button>
+      </a>
+    </div>
+  </nav>
+
+  <main class="charging-page-main">
+    <h2>Smart Charging Hubs 🔋</h2>
+    <p>Our network of Smart Charging Hubs is designed for efficiency and convenience, minimizing wait times and maximizing battery life.</p>
+
+    <div class="home-link-box">
+        <a href="EV Campus Commute.html">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            Back to Campus Hub
+        </a>
+    </div>
+    
+    <p style="text-align: center; font-weight: 600; color: var(--accent);">Key Features of our Smart Charging Network:</p>
+    
+    <ul class="feature-list">
+      <li>**Dynamic Power Allocation:** Smart chargers efficiently allocate power across multiple vehicles.</li>
+      <li>**Off-Peak Scheduling:** Charging schedules are optimized to use low-tariff hours, saving energy and cost.</li>
+      <li>**Real-Time Availability:** Use our map integration to instantly see which charging points are vacant.</li>
+    </ul>
+    
+    <p style="text-align: center; color: var(--muted);">
+      Learn how to use the charging stations with your student credits and discover the nearest ones on campus.
+    </p>
+
+    <div class="map-cta-box">
+        <a href="campus-map.html">Find Nearest Hubs on the Map →</a>
+    </div>
+
+  </main>
+
+  <footer class="ev-footer">
+    <div class="ev-footer-content">
+      <div class="footer-section">
+        <h4>About</h4>
+        <p>EV Campus Commute — making campus travel clean, quiet & smart.</p>
+        <p>Join our student community for exclusive EV ride deals & updates.</p>
+      </div>
+      <div class="footer-section">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="vehicles.html">Vehicles</a></li>
+          <li><a href="charging.html">Charging Hubs</a></li>
+          <li><a href="plans.html">Plans</a></li>
+          <li><a href="brochure.html">Brochure</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="help.html">Help Center</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="campus-map.html">Campus Map Access</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <ul class="socials">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+        <p class="copyright">© 2025 EV Campus Commute</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
